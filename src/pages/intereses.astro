@@ -1,0 +1,42 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import InterestPill from "../components/InterestPill.astro";
+---
+
+<BaseLayout title="Intereses — Sara">
+  <Nav />
+
+  <header class="container-balanced pt-6 pb-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold">Intereses</h1>
+    <p class="text-sm mt-2" style="color: rgb(var(--muted));">
+      Áreas profesionales y personales que me inspiran y en las que sigo creciendo.
+    </p>
+  </header>
+
+  <section class="container-balanced grid md:grid-cols-2 gap-6 pb-16">
+    <!-- Profesionales -->
+    <article class="card">
+      <h2 class="text-lg font-semibold mb-3">Intereses profesionales</h2>
+      <div class="flex flex-wrap gap-2">
+        <InterestPill label="Diseño de estructuras elásticas" />
+        <InterestPill label="Metamateriales" />
+        <InterestPill label="Síntesis de SiC por sustitución atómica" />
+        <InterestPill label="Física del estado sólido" />
+        <InterestPill label="Física de semiconductores" />
+        <InterestPill label="Análisis y visualización de datos" />
+        <InterestPill label="Linux" />
+      </div>
+    </article>
+
+    <!-- Personales -->
+    <article class="card">
+      <h2 class="text-lg font-semibold mb-3">Intereses personales</h2>
+      <div class="flex flex-wrap gap-2">
+        <InterestPill label="Escritura creativa" />
+        <InterestPill label="Fitness y fisicoculturismo" />
+        <InterestPill label="Experiencias culturales y artísticas" />
+      </div>
+    </article>
+  </section>
+</BaseLayout>

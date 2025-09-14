@@ -1,0 +1,42 @@
+---
+interface Props {
+  title: string;
+  subtitle?: string;
+  ctaHref?: string;
+  ctaLabel?: string;
+}
+const { title, subtitle = "Ingeniería física, semiconductores y divulgación científica.", ctaHref = "/Resumen", ctaLabel = "Conóceme" } = Astro.props;
+---
+<section class="container-balanced pt-8 pb-16">
+  <div class="grid md:grid-cols-2 gap-8 items-center">
+    <div class="space-y-6">
+      <h1 class="text-4xl md:text-5xl font-extrabold leading-tight">
+        {title}
+      </h1>
+      <p class="text-lg text-muted">{subtitle}</p>
+      <div class="flex gap-3">
+        <a href={ctaHref} class="btn btn-primary">{ctaLabel}</a>
+      </div>
+    </div>
+<div class="card relative overflow-hidden">
+  <img
+    src="/images/sara.png"
+    alt="Sara, ingeniera física — foto profesional"
+    class="w-full rounded-xl2 object-cover aspect-[4/3]"
+    loading="eager"
+    decoding="async"
+    fetchpriority="high"
+  />
+  <div
+    class="absolute inset-0 rounded-xl2 pointer-events-none"
+    style="
+      background: radial-gradient(60% 60% at 80% 10%, rgb(var(--primary)/0.25), transparent 60%),
+                  radial-gradient(50% 50% at 10% 10%, rgb(var(--blue)/0.20), transparent 60%);
+      mix-blend-mode: screen;
+    "
+  />
+</div>
+
+    </div>
+  </div>
+</section>

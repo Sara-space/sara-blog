@@ -1,0 +1,17 @@
+---
+const links = [
+  { href: "/Resumen", label: "Resumen" },
+  { href: "/publicaciones", label: "Publicaciones" },
+  { href: "/habilidades", label: "Habilidades" },
+  { href: "/intereses", label: "Intereses" },
+];
+---
+<nav class="container-balanced py-6 flex items-center justify-between">
+  <a href="/" class="font-extrabold tracking-tight text-lg">
+    <span class="text-primary">Sara</span> <span class="text-fg/80">· Física</span>
+  </a>
+  <ul class="hidden md:flex items-center gap-5">
+    {links.map(l => <li><a class="nav-link" href={l.href}>{l.label}</a></li>)}
+  </ul>
+  <a href="/resumen" class="btn btn-primary md:hidden">Menú</a>
+</nav>

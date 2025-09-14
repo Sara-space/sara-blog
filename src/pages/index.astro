@@ -1,11 +1,24 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import Card from "../components/Card.astro";
+import "../styles/global.css";
 ---
+<BaseLayout title="Sara — Ingeniera Física">
+  <Nav />
+  <Hero title="Hola, soy Sara Martínez, Ingeniera Física" />
+  <main class="container-balanced grid md:grid-cols-2 gap-6 pb-16">
+    <Card title="Resumen de vida" href="/Resumen" description="Trayectoria personal y objetivos." />
+    <Card title="Publicaciones" href="/publicaciones" description="Artículos, ponencias y posters." />
+    <Card title="Habilidades" href="/habilidades" description="Tech stack y competencias." />
+    <Card title="Intereses" href="/intereses" description="Líneas de investigación y hobbies." />
+  </main>
+  <script is:inline>
+    // (ejemplo) pequeña animación del fondo si lo deseas
+  </script>
+  <slot name="footer" />
+</BaseLayout>
 
-<Layout>
-	<Welcome />
-</Layout>
+
+

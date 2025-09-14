@@ -1,0 +1,57 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import SkillPill from "../components/SkillPill.astro";
+
+// Datos de Sara (puedes editarlos aquí)
+const skills = [
+  {
+    title: "Programación y Análisis de Datos",
+    items: ["Bash", "Gnuplot", "Python (NumPy, SciPy, Pandas)", "Git", "GitHub"],
+  },
+  {
+    title: "Simulación y Modelado",
+    items: ["COMSOL", "Matlab/Octave"],
+  },
+  {
+    title: "Procesamiento de Semiconductores",
+    items: ["Deposición de películas delgadas", "Hornos de difusión/oxidación"],
+  },
+  {
+    title: "Lenguajes de Descripción de Hardware (HDLs)",
+    items: ["Verilog", "SystemVerilog"],
+  },
+  {
+    title: "Sistemas Operativos",
+    items: ["Linux (Debian)", "Windows"],
+  },
+  {
+    title: "Procesamiento de Textos",
+    items: ["LaTeX"],
+  },
+];
+---
+
+<BaseLayout title="Habilidades — Sara">
+  <Nav />
+
+  <!-- Encabezado -->
+  <header class="container-balanced pt-6 pb-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold">Habilidades</h1>
+    <p class="text-sm mt-2" style="color: rgb(var(--muted));">
+      Habilidades técnicas de programación, modelado, semiconductores y más.
+    </p>
+  </header>
+
+  <!-- Grid de categorías -->
+  <main class="container-balanced grid sm:grid-cols-2 lg:grid-cols-3 gap-6 pb-16">
+    {skills.map((group) => (
+      <section class="card">
+        <h2 class="text-lg font-semibold mb-3">{group.title}</h2>
+        <div class="flex flex-wrap gap-2">
+          {group.items.map((it) => <SkillPill label={it} />)}
+        </div>
+      </section>
+    ))}
+  </main>
+</BaseLayout>

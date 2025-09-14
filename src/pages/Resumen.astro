@@ -1,0 +1,118 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import Stat from "../components/Stat.astro";
+import Badge from "../components/Badge.astro";
+import TimelineItem from "../components/TimeLineItem.astro";
+import "../styles/global.css";
+---
+
+<BaseLayout title="Resumen — Sara">
+  <Nav />
+
+  <!-- Header -->
+  <header class="container-balanced pt-6 pb-10">
+    <div class="grid md:grid-cols-[auto,220px] gap-8 items-center">
+      <div class="space-y-4">
+        <h1 class="text-3xl md:text-4xl font-extrabold">Resumen de vida</h1>
+        <p class="text-lg text-muted">
+          Ingeniera física especializada en semiconductores, con experiencia en investigación,
+          docencia y divulgación científica. Apasionada por el diseño de dispositivos,
+          caracterización de materiales y la comunicación clara de la ciencia.
+        </p>
+        <div class="flex flex-wrap gap-2">
+          <Badge label="Semiconductores" />
+          <Badge label="Caracterización" />
+          <Badge label="Dispositivos GaN/SiC" />
+          <Badge label="Docencia" />
+          <Badge label="Divulgación" />
+        </div>
+      </div>
+
+      <div class="justify-self-center">
+        <div class="relative">
+          <img
+            src="/images/sara.png"
+            alt="Sara — retrato profesional"
+            class="w-[220px] h-[220px] rounded-full object-cover border border-border/60"
+            loading="eager"
+            decoding="async"
+            fetchpriority="high"
+          />
+          <!-- halo suave con la paleta -->
+          <span class="pointer-events-none absolute inset-0 rounded-full"
+                style="box-shadow: 0 0 120px 20px rgb(var(--primary)/0.25);"></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Stats -->
+  <section class="container-balanced grid md:grid-cols-4 gap-4 pb-10">
+    <Stat value="5+" label="Años de experiencia" />
+    <Stat value="1" label="Publicaciones" />
+    <Stat value="1" label="Proyectos personales" />
+    <Stat value="3" label="Cursos impartidos" />
+  </section>
+
+  <!-- About + Highlights -->
+  <section class="container-balanced grid lg:grid-cols-3 gap-6 pb-12">
+    <article class="card lg:col-span-2">
+      <h2 class="text-xl font-semibold mb-3">Sobre mí</h2>
+      <p class="text-sm leading-7 text-muted">
+        Soy ingeniera física con enfoque en electrónica de potencia y materiales
+        semiconductores. He trabajado en caracterización eléctrica y óptica,
+        simulación y modelado, así como en la elaboración de pósters y artículos
+        para congresos. Disfruto enseñar y construir proyectos que acerquen la
+        ciencia a más personas.
+      </p>
+      <ul class="mt-4 grid sm:grid-cols-2 gap-2 text-sm">
+        <li><span class="text-muted">Ubicación:</span> CDMX / México</li>
+        <li><span class="text-muted">Idiomas:</span> Español, Inglés B1</li>
+        <li><span class="text-muted">Intereses:</span> Semiconductores, Metamateriales, Programación </li>
+        <li><span class="text-muted">Contacto:</span> sara.neftali@gmail.com </li>
+      </ul>
+      <div class="mt-5 flex gap-3">
+        <a href="/vida-profesional" class="btn btn-primary">Ver experiencia</a>
+        <a href="/proyectos-personales" class="btn">Proyectos</a>
+      </div>
+    </article>
+
+    <aside class="card">
+      <h3 class="text-lg font-semibold mb-3">Destacados</h3>
+      <ul class="space-y-2 text-sm">
+        <li>🏅 Ganadora concurso Carlos Graef en CNF Zac, Méx. </li>
+        <li>🧪 Curso "Fundamentos de Python (Python desde cero)"</li>
+        <li>   Curso "Curso de Linux Intensivo" </li>
+        <li>📚 Bootcamp “Digital Integrated Circuits Design Academy”</li>
+        <li>📝 Mención especial en el concurso de ensayo, revista Aleph UAM-UNAM</li>
+      </ul>
+    </aside>
+  </section>
+
+  <!-- Timeline -->
+  <section class="container-balanced pb-16">
+    <h2 class="text-xl font-semibold mb-4">Línea del tiempo</h2>
+    <ol class="relative border-s border-border/60 pl-6 space-y-4">
+      <TimelineItem
+        title="Maestría en Ingeniería Eléctrica (Electrónica del Estado Sólido)"
+        subtitle="Cinvestav, CDMX"
+        right="2023–2025"
+        description="Síntesis de Carburo de Silicio por sustitución atómica."
+      />
+      <TimelineItem
+        title="Ingeniería Física"
+        subtitle="Universidad Autónoma Metropolitana Unidad Azcapotzalco, CDMX"
+        right="2011–2021"
+        description="Diseño de un aislante topológico para ondas elásticas."
+      />
+      <TimelineItem
+        title="Investigación en materiales"
+        right="2019–Actual"
+        description="Cursos, mentorías, congresos."
+      />
+    </ol>
+  </section>
+
+</BaseLayout>
+

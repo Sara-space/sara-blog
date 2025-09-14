@@ -1,0 +1,163 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import ExperienceItem from "../components/ExperienceItem.astro";
+import EduItem from "../components/EduItem.astro";
+---
+
+<BaseLayout title="Vida profesional — Sara">
+  <Nav />
+
+  <!-- Header -->
+  <header class="container-balanced pt-6 pb-8">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div>
+        <h1 class="text-3xl md:text-4xl font-extrabold">Vida profesional</h1>
+        <p class="text-sm mt-2" style="color: rgb(var(--muted));">
+          Experiencia, roles, proyectos y formación académica.
+        </p>
+      </div>
+      <div class="flex gap-3">
+        <a class="btn" href="/publicaciones">Publicaciones</a>
+        <a class="btn btn-primary" href="/cv-sara.pdf" target="_blank" rel="noopener">Descargar CV</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Filtros por etiquetas -->
+  <section class="container-balanced pb-6">
+    <div id="filters" class="flex flex-wrap gap-2">
+      {["semiconductores","investigacion","docencia","instrumentacion","analitica"].map((tag) => (
+        <button
+          class="btn text-xs"
+          data-tag={tag}
+          style="--chip-bg: transparent;"
+        >
+          {tag}
+        </button>
+      ))}
+      <button id="clearFilters" class="btn text-xs">Limpiar filtros</button>
+    </div>
+  </section>
+
+  <!-- Experiencia -->
+  <section class="container-balanced grid lg:grid-cols-3 gap-6 pb-12">
+    <!-- Columna principal (experiencia) -->
+    <div class="lg:col-span-2 space-y-6" id="experienceList">
+      <ExperienceItem
+        company="Laboratorio de Dispositivos"
+        role="Ing. de Semiconductores"
+        period="2023–2025"
+        location="CDMX"
+        description="Caracterización eléctrica y óptica de GaN/SiC, simulación y modelado de dispositivos."
+        bullets={[
+          "Medición I–V, C–V y PL en banco propio.",
+          "Ajuste de modelos de polarización y constantes dieléctricas.",
+          "Documentación técnica y pósters para congreso IMRC."
+        ]}
+        tags={["GaN","SiC","Polarización","Caracterización","PL","I–V","C–V"]}
+        logo="/logos/lab.svg"
+        link="#"
+        dataTags="semiconductores investigacion instrumentacion"
+      />
+
+      <ExperienceItem
+        company="Universidad X"
+        role="Profesora Adjunta"
+        period="2022–2024"
+        location="CDMX"
+        description="Docencia en fundamentos de semiconductores e instrumentación básica."
+        bullets={[
+          "Diseño de prácticas con osciloscopio y fuentes programables.",
+          "Material de apoyo y resolución de problemas tipo examen."
+        ]}
+        tags={["Docencia","Instrumentación","STM32","Python"]}
+        logo="/logos/universidad.svg"
+        link="#"
+        dataTags="docencia instrumentacion"
+      />
+
+      <ExperienceItem
+        company="Proyecto Personal"
+        role="Análisis y Visualización"
+        period="2021–2023"
+        location="Remoto"
+        description="Dashboards y análisis exploratorio para datasets científicos."
+        bullets={[
+          "Limpieza y normalización de datos con Python.",
+          "Visualizaciones interactivas para divulgación."
+        ]}
+        tags={["Python","EDA","Plotly","Dash"]}
+        logo="/logos/personal.svg"
+        link="#"
+        dataTags="analitica investigacion"
+      />
+    </div>
+
+    <!-- Columna lateral (educación y logros) -->
+    <aside class="space-y-6">
+      <EduItem
+        title="Maestría en Ingeniería Eléctrica (Semiconductores)"
+        school="Universidad X"
+        period="2023–2025"
+        details="Proyecto en GaN: polarización, caracterización y dispositivos."
+      />
+      <EduItem
+        title="Ingeniería Física"
+        school="Universidad Y"
+        period="2016–2021"
+        details="Materiales, instrumentación y modelado."
+      />
+
+      <article class="card">
+        <h3 class="text-lg font-semibold mb-3">Logros & distinciones</h3>
+        <ul class="space-y-2 text-sm">
+          <li>🏅 Mención en congreso IMRC — Póster GaN (2025)</li>
+          <li>🧪 Montaje de banco de medición IV/PL</li>
+          <li>📝 Artículo en preparación sobre polarización en GaN</li>
+        </ul>
+      </article>
+    </aside>
+  </section>
+
+  <!-- Script de filtros (vanilla) -->
+  <script is:inline>
+    const chips = Array.from(document.querySelectorAll('#filters [data-tag]'));
+    const clearBtn = document.getElementById('clearFilters');
+    const items = Array.from(document.querySelectorAll('#experienceList [data-tags]'));
+
+    function applyFilters() {
+      const active = chips.filter(c => c.classList.contains('chip-active')).map(c => c.dataset.tag);
+      if (active.length === 0) {
+        items.forEach(it => it.classList.remove('hidden'));
+        return;
+      }
+      items.forEach(it => {
+        const tags = (it.getAttribute('data-tags') || '').split(/\s+/);
+        const matches = active.some(a => tags.includes(a)); // OR
+        it.classList.toggle('hidden', !matches);
+      });
+    }
+
+    chips.forEach(chip => {
+      chip.addEventListener('click', () => {
+        chip.classList.toggle('chip-active');
+        applyFilters();
+      });
+    });
+
+    clearBtn?.addEventListener('click', () => {
+      chips.forEach(c => c.classList.remove('chip-active'));
+      applyFilters();
+    });
+  </script>
+
+  <!-- Estilo para chips activos -->
+  <style is:global>
+    .chip-active {
+      background: rgb(var(--primary) / 0.18) !important;
+      border-color: rgb(var(--primary) / 0.40) !important;
+      color: rgb(var(--fg)) !important;
+    }
+  </style>
+</BaseLayout>

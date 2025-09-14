@@ -1,0 +1,24 @@
+---
+interface Props {
+  title: string;
+  doi: string;          // solo el código, ej: 10.1016/j.rineng.2023.101272
+  doiUrl?: string;      // si no lo pasas, se arma con el doi
+  authors?: string;     // opcional
+  venue?: string;       // revista/conferencia opcional
+  year?: string | number;
+}
+const { title, doi, doiUrl = `https://doi.org/${doi}`, authors = "", venue = "", year = "" } = Astro.props;
+---
+<article class="card">
+  <h3 class="text-lg font-semibold">
+    <a href={doiUrl} target="_blank" rel="noopener" class="hover:underline">{title}</a>
+  </h3>
+  {(authors || venue || year) && (
+    <p class="text-sm mt-1" style="color: rgb(var(--muted));">
+      {authors}{authors && (venue || year) ? " — " : ""}{venue}{venue && year ? " · " : ""}{year}
+    </p>
+  )}
+  <p class="text-sm mt-3">
+    <span class="text-muted">DOI:</span> <a href={doiUrl} target="_blank" rel="noopener" class="hover:underline">{doi}</a>
+  </p>
+</article>

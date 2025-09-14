@@ -1,0 +1,43 @@
+/* Paleta + tokens (RGB separados para alpha dinámico) */
+:root {
+  /* Fondo/Texto */
+  --bg: 8 8 14;         /* casi negro con tinte azul */
+  --fg: 240 240 255;    /* texto principal */
+  --muted: 170 170 190; /* texto secundario */
+  --card: 16 16 28;     /* superficies */
+  --border: 48 48 72;   /* bordes suaves */
+
+  /* Paleta del usuario */
+  --primary: 94 23 235;   /* #5e17eb */
+  --indigo: 24 0 173;     /* #1800ad */
+  --orchid: 203 108 230;  /* #cb6ce6 */
+  --violet: 140 82 255;   /* #8c52ff */
+  --pink: 255 169 249;    /* #ffa9f9 */
+  --magenta: 188 63 222;  /* #bc3fde */
+  --blush: 255 194 232;   /* #ffc2e8 */
+  --blue: 31 128 255;     /* #1f80ff */
+}
+
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+/*
+body {
+  background: radial-gradient(1200px 800px at 80% -10%, rgb(var(--primary) / 0.10), transparent 60%),
+              radial-gradient(1000px 600px at -10% 10%, rgb(var(--blue) / 0.10), transparent 60%),
+              rgb(var(--bg));
+  color: rgb(var(--fg));
+  font-feature-settings: "ss01" 1, "ss02" 1, "cv02" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}*/
+body {
+  color: rgb(var(--fg), 1);       /* variable */
+  color: #f2f3ff;                 /* fallback duro por si faltan variables */
+  background: radial-gradient(1200px 800px at 80% -10%, rgb(var(--primary) / 0.10), transparent 60%),
+              radial-gradient(1000px 600px at -10% 10%, rgb(var(--blue) / 0.10), transparent 60%),
+              rgb(var(--bg));
+}
+
+a { color: rgb(var(--blue)); text-underline-offset: 2px; }
+.prose { color: rgb(var(--fg)); }
+.prose :where(h1,h2,h3) { color: rgb(var(--fg)); }

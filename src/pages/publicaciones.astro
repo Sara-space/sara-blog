@@ -1,0 +1,27 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import Nav from "../components/Nav.astro";
+import PublicationItem from "../components/PublicationItem.astro";
+---
+
+<BaseLayout title="Publicaciones — Sara">
+  <Nav />
+
+  <header class="container-balanced pt-6 pb-6">
+    <h1 class="text-3xl md:text-4xl font-extrabold">Publicaciones</h1>
+    <p class="text-sm mt-2" style="color: rgb(var(--muted));)">
+      Artículos, ponencias y posters seleccionados.
+    </p>
+  </header>
+
+  <main class="container-balanced grid md:grid-cols-2 gap-6 pb-16">
+    <PublicationItem
+      title="Edge and corner states in two-dimensional finite phononic crystals: Simulation and experimental study"
+      doi="10.1016/j.rineng.2023.101272"
+      /* authors="Sara Apellido, etc." */
+      /* venue="(revista o congreso)" */
+      /* year="2023" */
+    />
+  </main>
+</BaseLayout>
+

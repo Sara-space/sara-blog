@@ -1,0 +1,14 @@
+---
+interface Props {
+  title: string;          // Grado
+  school: string;         // Universidad
+  period: string;         // Años
+  details?: string;       // breve detalle
+}
+const { title, school, period, details = "" } = Astro.props;
+---
+<article class="card">
+  <h3 class="text-lg font-semibold">{title}</h3>
+  <p class="text-sm mt-1" style="color: rgb(var(--muted));">{school} · {period}</p>
+  {details && <p class="text-sm mt-3">{details}</p>}
+</article>
