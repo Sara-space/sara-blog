@@ -4,15 +4,17 @@ import Nav from "../components/Nav.astro";
 import Hero from "../components/Hero.astro";
 import Card from "../components/Card.astro";
 import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL;
 ---
 <BaseLayout title="Sara — Ingeniera Física">
   <Nav />
   <Hero title="Hola, soy Sara Martínez, Ingeniera Física" />
   <main class="container-balanced grid md:grid-cols-2 gap-6 pb-16">
-    <Card title="Resumen de vida" href="/Resumen" description="Trayectoria personal y objetivos." />
-    <Card title="Publicaciones" href="/publicaciones" description="Artículos, ponencias y posters." />
-    <Card title="Habilidades" href="/habilidades" description="Tech stack y competencias." />
-    <Card title="Intereses" href="/intereses" description="Líneas de investigación y hobbies." />
+    <Card title="Resumen de vida" href={'${base}Resumen'} description="Trayectoria personal y objetivos." />
+    <Card title="Publicaciones" href={'${base}publicaciones'} description="Artículos, ponencias y posters." />
+    <Card title="Habilidades" href={'${base}habilidades'} description="Tech stack y competencias." />
+    <Card title="Intereses" href={'${base}intereses'} description="Líneas de investigación y hobbies." />
   </main>
   <script is:inline>
     // (ejemplo) pequeña animación del fondo si lo deseas
