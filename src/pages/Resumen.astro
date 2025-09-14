@@ -6,6 +6,7 @@ import Badge from "../components/Badge.astro";
 import TimelineItem from "../components/TimeLineItem.astro";
 import "../styles/global.css";
 ---
+const base = import.meta.env.BASE_URL; // "/sara-blog/" en producción
 
 <BaseLayout title="Resumen — Sara">
   <Nav />
@@ -32,7 +33,7 @@ import "../styles/global.css";
       <div class="justify-self-center">
         <div class="relative">
           <img
-            src="images/sara.png"
+            src={${import.meta.env.BASE_URL}images/sara.png}
             alt="Sara — retrato profesional"
             class="w-[220px] h-[220px] rounded-full object-cover border border-border/60"
             loading="eager"
