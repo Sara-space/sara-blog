@@ -15,7 +15,7 @@ const links = [
     <span style="color: rgb(var(--fg) / 0.80);"> · Física</span>
   </a>
   <ul class="hidden md:flex items-center gap-5">
-    {links.map(l => <li><a class="nav-link" href={${base}${l.href}}>{l.label}</a></li>)}
+    {links.map(l => <li><a class="nav-link" href={'${base}${l.href}'}>{l.label}</a></li>)}
   </ul>
   <a href={'${base}Resumen'} class="btn btn-primary md:hidden">Menú</a>
 </nav>
