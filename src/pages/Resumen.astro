@@ -5,8 +5,9 @@ import Stat from "../components/Stat.astro";
 import Badge from "../components/Badge.astro";
 import TimelineItem from "../components/TimeLineItem.astro";
 import "../styles/global.css";
+
+const base = import.meta.env.BASE_URL;
 ---
-const base = import.meta.env.BASE_URL; // "/sara-blog/" en producción
 
 <BaseLayout title="Resumen — Sara">
   <Nav />
