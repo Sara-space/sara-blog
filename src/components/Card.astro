@@ -4,28 +4,44 @@ interface Props {
   href: string;
   description?: string;
 }
+
 const { title, href, description = "" } = Astro.props;
 
 const base = import.meta.env.BASE_URL;
-const isAbs = /^(https?:|mailto:|tel:|#)/.test(href);
-const url = isAbs
-  ? href
-  : href.startsWith(base)
-    ? href
-    : href.startsWith("/")
-      ? ${base}${href.slice(1)}
-      : ${base}${href};
 
+function normalizeHref(h: string) {
+  // Absolutas o especiales: no tocar
+  if (/^(https?:|mailto:|tel:|#)/.test(h)) return h;
+  // Si ya viene con base, dejarla
+  if (h.startsWith(base)) return h;
+  // Si empieza con "/", anteponer base
+  if (h.startsWith("/")) return base + h.slice(1);
+  // Relativa: anteponer base
+  return base + h;
+}
+
+const url = normalizeHref(href);
 const isExternal = /^https?:\/\//.test(url);
 ---
 
-<a
-  href={url}
-  target={isExternal ? "_blank" : undefined}
-  rel={isExternal ? "noopener noreferrer" : undefined}
-  class="card block hover:ring-2 hover:ring-primary/50 transition-shadow"
-  style="--tw-ring-color: rgb(var(--primary) / 0.5);"
->
-  <h3 class="text-xl font-semibold mb-2">{title}</h3>
-  <p class="text-sm text-muted" style="color: rgb(var(--muted));">{description}</p>
-</a>
+{isExternal ? (
+  <a
+    href={url}
+    target="_blank"
+    rel="noopener noreferrer"
+    class="card block hover:ring-2 transition-shadow"
+    style="--tw-ring-color: rgb(var(--primary) / 0.5);"
+  >
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-sm" style="color: rgb(var(--muted));">{description}</p>
+  </a>
+) : (
+  <a
+    href={url}
+    class="card block hover:ring-2 transition-shadow"
+    style="--tw-ring-color: rgb(var(--primary) / 0.5);"
+  >
+    <h3 class="text-xl font-semibold mb-2">{title}</h3>
+    <p class="text-sm" style="color: rgb(var(--muted));">{description}</p>
+  </a>
+)}
