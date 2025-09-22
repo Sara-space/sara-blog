@@ -1,4 +1,5 @@
 ---
+import { withBase as to, samePath } from '../lib/paths';
 interface Props {
   title: string;
   subtitle?: string;
@@ -20,7 +21,7 @@ const { title, subtitle = "Ingeniería física, semiconductores y divulgación c
     </div>
 <div class="card relative overflow-hidden">
   <img
-    src="/images/sara.png"
+      src={to("images/sara.png")}
     alt="Sara, ingeniera física — foto profesional"
     class="w-full rounded-xl2 object-cover aspect-[4/3]"
     loading="eager"
