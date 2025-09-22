@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 
 export default defineConfig({
-  site: 'https://mrqm30.github.io',
+  site: 'https://Sara-space.github.io',
   base: "/sara-blog",
   trailingSlash: 'never',
     integrations: [
