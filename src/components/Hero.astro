@@ -6,7 +6,14 @@ interface Props {
   ctaHref?: string;
   ctaLabel?: string;
 }
-const { title, subtitle = "Ingeniería física, semiconductores y divulgación científica.", ctaHref = {to("Resumen")}, ctaLabel = "Conóceme" } = Astro.props;
+const defaultHref = to("Resumen");
+
+const {
+  title,
+  subtitle = "Ingeniería física, semiconductores y divulgación científica.",
+  ctaHref = defaultHref,
+  ctaLabel = "Conóceme"
+} = Astro.props;
 ---
 <section class="container-balanced pt-8 pb-16">
   <div class="grid md:grid-cols-2 gap-8 items-center">
